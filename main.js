@@ -21,6 +21,7 @@ const limiter = RateLimit({
     }
   });
   
+app.set('trust proxy', 1);
 app.use(limiter)
 app.use(express.json());
 app.use(cors()) // used to by pass cors Limitation by browser
