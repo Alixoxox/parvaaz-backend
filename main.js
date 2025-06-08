@@ -10,7 +10,7 @@ import baggage_Router from './routes/baggae_R.js'
 import inquiries_R from './routes/inq_R.js'
 import RateLimit from 'express-rate-limit';
 const app=express()
-
+const port =process.env.PORT|| PORT ||5000
 const limiter = RateLimit({
     windowMs: 10 * 60 * 1000, // 15 minutes
     max: 150, // limit each IP to 150 requests per windowMs
@@ -35,6 +35,6 @@ app.use("/api/admin",adminRoute)
 app.use('/api/users/booking',bookingRoute)
 app.use('/api/data/baggage', baggage_Router)
 app.use("/api/inquiries", inquiries_R)
-app.listen(PORT,()=>{
-    console.log("Server running in Port : ",PORT);
+app.listen(port,()=>{
+    console.log("Server running in Port : ",port);
 })
