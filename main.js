@@ -13,17 +13,21 @@ const app=express()
 
 const limiter = RateLimit({
     windowMs: 10 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
+    max: 150, // limit each IP to 150 requests per windowMs
     handler: function (req, res) {
       res.status(429).json({
         message: "Too many requests. Please try again later.",
       });
     }
   });
-  
+app.set('trust proxy', 1);
+
 app.use(limiter)
 app.use(express.json());
 app.use(cors()) // used to by pass cors Limitation by browser
+app.get('/',(req,res)=>{
+    res.send("Welcome to the Flight Booking API");
+})
 app.use('/api/users',userRouter);
 app.use('/api/data/flights',flightsRouter);
 app.use('/api/data/airlines',airlinesRouter);
