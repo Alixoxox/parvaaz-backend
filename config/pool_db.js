@@ -3,7 +3,7 @@ import {DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT } from './dotenv.js'
 
 // Create a shared connection pool
 const pool = mysql.createPool({
-    connectionLimit: 5,     // Stay under 5 connection limit
+    connectionLimit: 3,     // 3 for backend + 1 for data-view 
     host: DB_HOST,
     user: DB_USER,
     password: DB_PASSWORD,
